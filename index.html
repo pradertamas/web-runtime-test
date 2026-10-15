@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Browser Runtime Test</title>
+  <meta name="description" content="Browser Runtime and Web API Compatibility Test for JavaScript, rendering, storage, input, WebSocket and page lifecycle behavior under changing runtime conditions.">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header><div><h1>BROWSER RUNTIME TEST</h1><p>Web API Compatibility Test</p></div><div class="running"><span></span> TEST RUNNING</div></header>
+  <noscript><div class="warning">JavaScript NOT AVAILABLE / DISABLED. A CSS animáció önállóan működik.</div></noscript>
+  <main>
+    <section class="panel"><h2>JAVASCRIPT</h2><strong id="js-status">WAITING</strong><dl><dt>Elapsed</dt><dd id="elapsed">00:00</dd><dt>Timer ticks</dt><dd id="ticks">0</dd><dt>Animation frames</dt><dd id="frames">0</dd><dt>FPS</dt><dd id="fps">—</dd></dl></section>
+    <section class="panel"><h2>CSS ANIMATION</h2><div class="css-track"><div class="css-ball"></div></div><p>Önálló CSS animáció • megállását vizuálisan figyeld.</p></section>
+    <section class="panel"><h2>CANVAS 2D</h2><canvas id="canvas2d" width="480" height="140" aria-label="Canvas mozgó objektum teszt"></canvas><div id="canvas-status">WAITING</div><p>FPS: <b id="canvas-fps">—</b> · Frames: <b id="canvas-frames">0</b></p></section>
+    <section class="panel"><h2>WEBGL</h2><canvas id="webgl" width="480" height="140" aria-label="WebGL animált szín teszt"></canvas><div id="gl-status">WAITING</div><p>FPS: <b id="gl-fps">—</b> · Frames: <b id="gl-frames">0</b></p><div id="gl-info" class="small wrap"></div></section>
+    <section class="panel"><h2>TOUCH TEST</h2><button id="touch-area">TAP HERE</button><p>Last event: <b id="touch-last">—</b><br>X: <b id="touch-x">—</b> · Y: <b id="touch-y">—</b> · Events: <b id="touch-count">0</b></p><p class="small">DOM eseményszám, nem érintésszám. Koordináták a viewporthoz képest.</p></section>
+    <section class="panel"><h2>PAGE / CAPABILITIES</h2><dl><dt>Visibility</dt><dd id="visibility">—</dd><dt>Window focus</dt><dd id="focus">—</dd><dt>navigator.onLine</dt><dd id="online">—</dd><dt>LOCAL STORAGE</dt><dd id="storage">WAITING</dd><dt>WebSocket API</dt><dd id="ws-api">—</dd></dl></section>
+    <section class="panel continuity"><div class="continuity-heading"><h2>RUNTIME CONTINUITY TEST</h2><strong id="continuity-status">IDLE</strong></div><p>A vizsgált runtime/browser körülményt manuálisan változtatod meg.</p><ol><li>Indítsd el a continuity tesztet.</li><li>Hagyd futni az animációkat és számlálókat.</li><li>Változtasd meg a vizsgált runtime/browser körülményt.</li><li>Figyeld meg, mely animációk és számlálók működnek tovább.</li><li>Állítsd le a tesztet.</li><li>Másold ki az eredményeket.</li></ol><div class="buttons"><button id="continuity-start">START CONTINUITY TEST</button><button id="continuity-stop" disabled>STOP CONTINUITY TEST</button></div><pre id="continuity-summary">Nincs még mérés.</pre></section>
+  </main>
+  <div class="actions"><button id="copy">COPY RESULTS</button><button id="reset" class="secondary">RESET TEST</button><span id="copy-status" role="status"></span></div>
+  <section id="copy-fallback" class="panel" hidden><h2>RESULTS</h2><p>A clipboard nem használható. Jelöld ki és másold ki az alábbi szöveget.</p><textarea id="results" readonly aria-label="Másolható diagnosztikai eredmények"></textarea></section>
+  <details class="panel"><summary>BROWSER INFO</summary><dl><dt>User Agent</dt><dd id="ua" class="wrap">—</dd><dt>Viewport</dt><dd id="viewport">—</dd><dt>Screen</dt><dd id="screen">—</dd><dt>devicePixelRatio</dt><dd id="dpr">—</dd><dt>Language</dt><dd id="language">—</dd><dt>Platform</dt><dd id="platform">—</dd></dl></details>
+  <details class="panel"><summary>OPTIONAL WEBSOCKET TEST</summary><p>Nincs beépített backend. Csak saját, megbízható tesztvégpontot adj meg. HTTPS oldalon a ws:// kapcsolatot a böngésző blokkolhatja.</p><label for="ws-url">WebSocket URL</label><input id="ws-url" type="url" placeholder="wss://…" autocomplete="off"><div class="buttons"><button id="ws-connect">CONNECT</button><button id="ws-disconnect" disabled>DISCONNECT</button><button id="ws-send" disabled>SEND TEST</button></div><p>Status: <b id="ws-status">closed</b></p><p class="wrap">Received message: <span id="ws-message">—</span></p></details>
+  <details class="panel"><summary>DIAGNOSTIC LOG <span id="log-count">0 / 500</span></summary><pre id="log" aria-label="Diagnosztikai napló"></pre></details>
+  <footer>PoC 1 • kizárólag böngészőképesség-mérés • egyszerű Canvas / WebGL tesztanimációk</footer>
+</body>
+</html>
